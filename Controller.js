@@ -1,9 +1,10 @@
 
 
 var arDrone = require('ar-drone');
+var client = arDrone.createClient();
+
 var decision = require('./Flight/decision');
 
-var client = arDrone.createClient();
 var data;
 
 /**
@@ -24,10 +25,12 @@ function getData(client) {
 	return decision.data(client);
 }
 
-
 var dataLoop = setInterval(function() {
-	data = decision.data(client);	
+	data = decision.data(client);
 	console.log(data);
 }, 33);
 
-
+// test(client);
+var testLed = decision.lightShow(client);
+var testNav = decision.navdata(client);
+//var test = decision.takeoff(client);
