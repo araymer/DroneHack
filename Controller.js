@@ -10,7 +10,7 @@ var data;
 /*
 Test of movements using ar-drone api
 */
-decision.lightShow(client);
+//decision.lightShow(client);
 
 decision.takeoff(client);
 decision.turnLeft(client, .2, 1000);
