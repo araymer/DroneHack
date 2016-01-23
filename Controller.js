@@ -1,16 +1,11 @@
 
 
 var arDrone = require('ar-drone');
-var decision = require('./Flight/decision');
-<<<<<<< Updated upstream
+var client = arDrone.createClient();
 
-var client = arDrone.createClient();
+var decision = require('./Flight/decision');
+
 var data;
-=======
-//var client = require('./client');
-var arDrone = require('ar-drone');
-var client = arDrone.createClient();
->>>>>>> Stashed changes
 
 /**
 * @param client the client to the drone
@@ -35,10 +30,7 @@ var dataLoop = setInterval(function() {
 	console.log(data);
 }, 33);
 
-// var test = decision.data();
-
 // test(client);
 var testLed = decision.lightShow(client);
 var testNav = decision.navdata(client);
 //var test = decision.takeoff(client);
->>>>>>> Stashed changes
