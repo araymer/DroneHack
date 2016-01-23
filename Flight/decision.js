@@ -1,11 +1,8 @@
 
 var exports = module.exports = {};
 
-exports.data = function(client) {
-	client.config('general:navdata_demo', 'TRUE');
-}
 
-exports.navdata = function navdata(client) {
+exports.data = function(client) {
 	client.on('navdata', console.log);
 }
 

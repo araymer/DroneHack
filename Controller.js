@@ -25,12 +25,10 @@ function getData(client) {
 	return decision.data(client);
 }
 
-var dataLoop = setInterval(function() {
-	data = decision.data(client);
-	console.log(data);
-}, 33);
 
-// test(client);
+data = decision.data(client);
+console.log(data);
+
+
 var testLed = decision.lightShow(client);
 var testNav = decision.navdata(client);
-//var test = decision.takeoff(client);
