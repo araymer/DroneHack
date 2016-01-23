@@ -1,11 +1,7 @@
 
 var exports = module.exports = {};
 
-
-exports.takeoff = function takeoff(client) {
-	client.takeoff();
-	setTimeout(function() {
-		client.land();
-	}, 500);
+exports.data = function(client) {
+	client.config('general:navdata_demo', 'TRUE');
 }
 

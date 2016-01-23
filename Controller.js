@@ -1,17 +1,18 @@
 
 
+var arDrone = require('ar-drone');
 var decision = require('./Flight/decision');
-var client = require('./client');
 
-
+var client = arDrone.createClient();
+var data;
 
 /**
 * @param client the client to the drone
 * Simple call for executing whatever the current decision is.
 *
 **/
-function executeIt(client) {
-	decision.current(client);
+function executeIt() {
+	//get decision and execute.
 }
 
 /**
@@ -23,12 +24,10 @@ function getData(client) {
 	return decision.data(client);
 }
 
-// var test = decision.data();
 
-// test(client);
-var test = decision.takeoff(client);
-
-
-
+var dataLoop = setInterval(function() {
+	data = decision.data(client);	
+	console.log(data);
+}, 33);
 
 
