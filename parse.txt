@@ -75,3 +75,8 @@
      rotation: [ [Object], [Object], [Object], [Object] ],
      translation: [ [Object], [Object], [Object], [Object] ],
      cameraSource: [ 0, 0, 0, 0 ] } }
+
+
+
+
+

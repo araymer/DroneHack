@@ -1,12 +1,8 @@
 var exports = module.exports = {};
 
-var const NORTH = 1;
-var const WEST = 2;
-var const EAST = 3;
-var const SOUTH = 4;
+var const cardinal[] = [ "NORTH", "EAST", "SOUTH", "WEST" ] ;
 
-var manuever = "LANDED";
-var dir = NORTH;
+var dir = cardinal[0];
 var curPos = {x: 0, y: 0};
 var destPos = {x: 0, y: 0};
 var prevPos = {x: 0, y: 0};
@@ -16,7 +12,7 @@ var height = 0;
 var batteryDying = false; 
 var reachedX = false;
 var reachedY = false;
-
+var avoiding = "NONE";
 
 exports = {
 
@@ -29,7 +25,7 @@ exports = {
 	batteryDying: batteryDying,
 	reachedX: reachedX,
 	reachedY: reachedY,
-
+	avoiding: none,
 
 	newDest: function(){
 		curPos = {x: Math.floor((Math.Random() * 2 * max) - max), y: Math.floor((Math.Random() * 2 * max) - max)};
@@ -64,24 +60,24 @@ exports = {
 	}
 	setHomeDir: function(){
 		if(0 < curPos.x && 0 < curPos.y){
-			dir = SOUTH;
+			dir = cardinal[2];
 		}
 		if(0 < curPos.x && 0 > curPos.y){
-			dir = WEST;
+			dir = cardinal[3];
 		}
 		if(0 > curPos.x && 0 > curPos.y){
-			dir = NORTH;
+			dir = cardinal[0];
 		}
 		if(0 > curPos.x && 0 < curPos.y){
-			dir = EAST;
+			dir = cardinal[1];
 		}		
 	}
 }
 
-d = client.on('navdata', function(data){
-				tmp = json.parse(data);
-				velocity = tmp.demo.velocity;
-				batteryDying = tmp.droneState.lowBattery;
-			}
-		});
+	d = client.on('navdata', function(data){
+			tmp = json.parse(data);
+			velocity = tmp.demo.velocity;
+			batteryDying = tmp.droneState.lowBattery;
+		}
+	});
 

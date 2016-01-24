@@ -1,4 +1,3 @@
-
 var const cruisingHeight = 2500;
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
@@ -19,13 +18,18 @@ function newLeg() {
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
 	if(xDist <= yDist) {
 		if(track.destPos.x <= track.curPos.x) {
-			motion.rotate()
+			motion.rotate();
 		}
 	}
-
 }
 
 Object.observe(track.reachedX, function(changes) {
-	if(track.reachedX && track.reachedY)
+	var x = track.reachedX;
+	var y = track.reachedY;
+	if(x && y) {
 		newLeg();
+	} else if(x) {
+
+	}
+
 });
