@@ -1,10 +1,6 @@
 var exports = module.exports = {};
 
 const tcardinal = [ "NORTH", "EAST", "SOUTH", "WEST" ] ;
-var const NORTH = 1;
-var const EAST = 2;
-var const SOUTH = 3;
-var const WEST = 4;
 
 var tdir = tcardinal[0];
 var tcurPos = {x: 0, y: 0};

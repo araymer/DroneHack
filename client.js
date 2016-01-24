@@ -7,7 +7,6 @@ var exports = module.exports = {
 	startUp: function() {
 		client.connect(9500, '192.168.1.1', function() {
 			console.log('Connected');
-			client.write('Hello, server! Love, Client.');
 		});
 		client.on('data', function(data) {
 			console.log('Received: ' + data);
@@ -22,6 +21,8 @@ var exports = module.exports = {
 }
 
 exports.obstacleSensors = irFlags;
+
+exports.startUp();
 
 
 

@@ -1,4 +1,5 @@
 const cruisingHeight = 2500;
+var arDrong = require('ar-drone');
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
 var security = require('./Security/alert');
@@ -9,6 +10,7 @@ var client = require('./client');
 var droneClient = arDrone.createClient();
 
 function startUp() {
+	client.startUp();
 	motion.takeoff();
 	newLeg();
 }
@@ -89,6 +91,7 @@ Object.observe(track.reachedY, function(changes) {
 			}
 		}
 	}
+});
 
 
 Object.observe(copterface.tracking, function(changes) {
@@ -96,6 +99,7 @@ Object.observe(copterface.tracking, function(changes) {
 	if(copterface.track && !alerted) {
 		security.alert();
 		security.alerted = true;
-	} else if(!copterface.track)
+	} else if(!copterface.track) {
 		security.alerted = false;
-}
+	}
+});
