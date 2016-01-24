@@ -19,9 +19,33 @@ function newLeg() {
 	track.newDest(); 
 	var xDist = Math.abs(track.destPos.x - track.curPos.x);
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
+<<<<<<< HEAD
+	if(abs(track.destPos.x - track.curPos.x) < abs(track.destPos.y - track.curPos.y)) {
+		if(xDist < track.curPos.x){
+			while(track.dir !== track.EAST)
+				motion.left(client);
+			motion.patrol(client);
+		}
+		if(track.curPos.x < xDist){
+			while(track.dir !== track.WEST)
+				motion.right(client);
+			motion.patrol(client);
+		}
+	} else{
+		if(yDist < track.curPos.y){
+			while(track.dir !== track.SOUTH)
+				motion.left(client);
+			motion.patrol(client);
+		}
+		if(track.curPos.y < yDist){
+			while(track.dir !== track.NORTH)
+				motion.right(client);
+			motion.patrol(client);
+=======
 	if(xDist <= yDist) {
 		if(track.destPos.x <= track.curPos.x) {
 			
+>>>>>>> 752343de5edf890dcde7194f01859df6f364d163
 		}
 	}
 }
