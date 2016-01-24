@@ -3,14 +3,14 @@
 var arDrone = require('ar-drone');
 var client = arDrone.createClient();
 
-var decision = require('./Flight/decision');
+var motion = require('./Flight/motion');
 
 var data;
 
 /*
 Test of movements using ar-drone api
 
-decision.lightShow(client);
+motion.lightShow(client);
 client.takeoff();
 client.after(5000, function() {
 	this.up(1);
@@ -28,29 +28,29 @@ client.after(5000, function() {
 	process.exit();
 });*/
 
-/* Test of Decision commands interrupting patrol
+/* Test of Motion commands interrupting patrol
 */
 
 // client.takeoff();
 // 	client.after(3000, function () {
 // 		this.front(1);
 // 	}).after(3000, function () {
-// 		decision.backupTurnLeft(client);
+// 		motion.avoidLeft(client);
 // 	}).after(10000, function () {
 // 		this.land();
 //		process.exit();
 // 	});
 
-decision.patrol(client);
+motion.patrol(client);
 //TODO: listen for interruptions from the IR sensors
 
 /**
 * @param client the client to the drone
-* Simple call for executing whatever the current decision is.
+* Simple call for executing whatever the current motion is.
 *
 **/
 function executeIt() {
-	//get decision and execute.
+	//get motion and execute.
 }
 
 /**
@@ -59,5 +59,5 @@ function executeIt() {
 * gets and returns the nav data for the drone.
 **/
 function getData(client) {
-	return decision.data(client);
+	return motion.data(client);
 }

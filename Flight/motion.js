@@ -37,7 +37,7 @@ exports.land = function (client) {
 	client.land(landCallback);
 };
 
-exports.backupTurnLeft = function (client) {
+exports.avoidLeft = function (client) {
 	client.stop();
 	state = "LEFTTURN";
 	client.after(2000, function() {
@@ -54,7 +54,7 @@ exports.backupTurnLeft = function (client) {
 	});
 };
 
-exports.backupTurnRight = function (client) {
+exports.avoidRight = function (client) {
 	client.stop();
 	state = "RIGHTTURN";
 	client.after(2000, function() {
@@ -69,4 +69,12 @@ exports.backupTurnRight = function (client) {
 		exports.patrol(client);
 		return client;
 	});
+};
+
+exports.returnHome = function (client) {
+
+};
+
+exports.lowBattery = function (client) {
+	exports.returnHome(client);
 };
