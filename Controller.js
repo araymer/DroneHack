@@ -9,26 +9,40 @@ var data;
 
 /*
 Test of movements using ar-drone api
-*/
+
 decision.lightShow(client);
 client.takeoff();
 client.after(5000, function() {
-	this.front(1);
-}).after(3000, function() {
+	this.up(1);
+}).after (750, function() {
+	this.front(.07);
+}).after(6000, function() {
 	this.stop();
-}).after(2000, function() {
-	this.clockwise(1);
+}).after(3000, function() {
+	this.clockwise(.05);
 }).after(9000, function() {
 	this.stop();
-}).after(1000, function() {
+}).after(3000, function() {
 	this.land();
-}).after(2000, function() {
+}).after(3000, function() {
 	process.exit();
-});
-// decision.takeoff(client);
-// decision.turnLeft(client, .2, 1000);
-// decision.moveForward(client, .2, 5000);
-// decision.land(client);
+});*/
+
+/* Test of Decision commands interrupting patrol
+*/
+
+// client.takeoff();
+// 	client.after(3000, function () {
+// 		this.front(1);
+// 	}).after(3000, function () {
+// 		decision.backupTurnLeft(client);
+// 	}).after(10000, function () {
+// 		this.land();
+//		process.exit();
+// 	});
+
+decision.patrol(client);
+//TODO: listen for interruptions from the IR sensors
 
 /**
 * @param client the client to the drone
@@ -47,13 +61,3 @@ function executeIt() {
 function getData(client) {
 	return decision.data(client);
 }
-
-//data = decision.data(client);
-//console.log(data);
-
-
-
-// test(client);
-//var testLed = decision.lightShow(client);
-//var testData = decision.data(client);
-//var testSquare = decision.testSquare(client);

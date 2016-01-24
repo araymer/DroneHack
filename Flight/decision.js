@@ -7,8 +7,56 @@ STANDBY, HOVER, FORWARD, BACK, LEFTTURN, RIGHTTURN, LEFT, RIGHT, UP, DOWN,
 LANDING, TAKEOFF
 */
 
-function backup(client) {
+//Get drone state and print it to console
+exports.data = function(client) {
+	client.on('navdata', console.log);
+};
+
+//Flashes LEDs orange, used for testing
+exports.lightShow = function (client) {
+	client.animateLeds('blinkOrange', 3, 5);
+};
+
+/**************************************************
+ADVANCED FUNCTIONS
+	These functions all return the client to allow
+	chaining of functions in a builder pattern.
+	These are meant to use to cut down on repetitive
+	code when handling IR events.
+***************************************************/
+//Takeoff and landing included to return the client
+//	upon callback to allow it to fit into the builder
+//	pattern.
+exports.takeoff = function (client) {
+	var takeoffCallback = function() {return client;};
+	client.takeoff(takeoffCallback);
+};
+
+exports.land = function (client) {
+	var landCallback = function() {return client;};
+	client.land(landCallback);
+};
+
+exports.backupTurnLeft = function (client) {
 	client.stop();
+	state = "LEFTTURN";
+	client.after(2000, function() {
+		this.back(.2);
+	}).after(2000, function() {
+		this.stop();
+	}).after(2000, function() {
+		this.counterClockwise(.2);
+	}).after(3000, function() {
+		this.stop();
+	}).after(2000, function() {
+		exports.patrol(client);
+		return client;
+	});
+};
+
+exports.backupTurnRight = function (client) {
+	client.stop();
+	state = "RIGHTTURN";
 	client.after(2000, function() {
 		this.back(.2);
 	}).after(2000, function() {
@@ -16,104 +64,9 @@ function backup(client) {
 	}).after(2000, function() {
 		this.clockwise(.2);
 	}).after(3000, function() {
-		this.front(.2);
+		this.stop();
+	}).after(2000, function() {
+		exports.patrol(client);
+		return client;
 	});
-}
-
-exports.data = function(client) {
-	client.on('navdata', console.log);
-};
-
-exports.lightShow = function (client) {
-	client.animateLeds('blinkOrange', 3, 5);
-};
-
-exports.takeoff = function (client) {
-	state = "TAKEOFF";
-	var takeoffCallback = function() {state = "HOVER"};
-	client.takeoff(takeoffCallback);
-	client.after(5000, null);
-};
-
-exports.land = function (client) {
-	state = "LANDING";
-	var landingCallback = function() {state = "STANDBY"};
-	client.land(landingCallback);
-};
-
-exports.ascend = function (client, speed, time) {
-	state = "UP";
-	client.up(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.descend = function (client, speed, time) {
-	state = "DOWN";
-	client.down(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.turnLeft = function (client, speed, time) {
-	state = "LEFTTURN";
-	client.counterClockwise(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.turnRight = function (client, speed, time) {
-	state = "RIGHTTURN";
-	client.clockwise(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.moveForward = function (client, speed, time) {
-	state = "FORWARD";
-	client.front(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.moveBackward = function (client, speed, time) {
-	state = "BACK";
-	client.back(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.moveLeft = function (client, speed, time) {
-	state = "LEFT";
-	client.left(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.moveRight = function (client, speed, time) {
-	state = "RIGHT";
-	client.right(speed);
-	client.after(time, function () {
-		client.stop();
-		state = "HOVER";
-	});
-};
-
-exports.stop = function (client) {
-	state = "HOVER";
-	client.stop();
 };
