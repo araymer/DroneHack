@@ -2,8 +2,8 @@ var autonomy = require('ardrone-autonomy');
 var arDrone = require('ar-drone');
 var mission  = autonomy.createMission();
 mission.takeoff()
-        .wait(2000)
        .zero()
+       .hover(2000)
        .altitude(3)
        .go({x: 2, y: 2})
        .hover(1000)
