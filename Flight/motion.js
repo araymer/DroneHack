@@ -15,7 +15,7 @@ MOTION FUNCTIONS
  *	pattern.
  */
 exports = {
-	
+
 	takeoff: function (client) {
 		var takeoffCallback = function() {return client;};
 		client.takeoff(takeoffCallback);
@@ -25,6 +25,7 @@ exports = {
 		var landCallback = function() {return client;};
 		client.land(landCallback);
 	},
+
 
 	//Begins patrol (moving forward)
 	patrol: function (client) {
