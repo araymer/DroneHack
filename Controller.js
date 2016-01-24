@@ -4,7 +4,7 @@ var motion = require('./Flight/motion');
 var track = require('./Flight/track');
 var security = require('.Security/alert');
 var client = require('client');
-var copterface = require('./Recog/copterface');
+var copterface = require('./webflight-copterface/public/js/copterface');
 
 var droneClient = arDrone.createClient();
 
@@ -29,3 +29,8 @@ Object.observe(track.reachedX, function(changes) {
 	if(track.reachedX && track.reachedY)
 		newLeg();
 });
+
+Object.observe(copterface.tracking, function(changes) {
+	if(copterface.track)
+		
+}
