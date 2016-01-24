@@ -35,7 +35,8 @@ exports.patrol = function (client) {
 exports.avoidLeft = function (client) {
 	client.stop();
 	client.after(2000, function() {
-		this.counterClockwise(.2);
+		//this.counterClockwise(.2);
+		mission.ccw(90).run();
 	}).after(3000, function() {
 		this.stop();
 	}).after(2000, function() {
@@ -44,7 +45,7 @@ exports.avoidLeft = function (client) {
 		this.stop();
 	}).after(2000, function() {
 		//this.clockwise(.2);
-		mission.ccw(90).run();
+		mission.cw(90).run();
 	}).after(3000, function() {
 		this.front(1);
 		return client;
@@ -58,7 +59,8 @@ exports.avoidLeft = function (client) {
 exports.avoidRight = function (client) {
 	client.stop();
 	client.after(2000, function() {
-		this.clockwise(.2);
+		//this.clockwise(.2);
+		mission.cw(90).run();
 	}).after(3000, function() {
 		this.stop();
 	}).after(2000, function() {
@@ -66,8 +68,8 @@ exports.avoidRight = function (client) {
 	}).after(2000, function() {
 		this.stop();
 	}).after(2000, function() {
-		//this.clockwise(.2);
-		mission.cw(90).run();
+		//this.counterClockwise(.2);
+		mission.ccw(90).run();
 	}).after(3000, function() {
 		this.front(1);
 		return client;
