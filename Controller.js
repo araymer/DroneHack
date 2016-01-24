@@ -1,9 +1,9 @@
-var const cruisingHeight = 2500;
+const cruisingHeight = 2500;
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
-var security = require('.Security/alert');
-var client = require('client');
-var copterface = require('./Recog/copterface');
+var security = require('./Security/alert');
+var client = require('./client');
+// var copterface = require('./Recog/copterface');
 
 var droneClient = arDrone.createClient();
 
@@ -18,18 +18,15 @@ function newLeg() {
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
 	if(xDist <= yDist) {
 		if(track.destPos.x <= track.curPos.x) {
-			motion.rotate();
+			
 		}
 	}
 }
 
-Object.observe(track.reachedX, function(changes) {
-	var x = track.reachedX;
-	var y = track.reachedY;
-	if(x && y) {
-		newLeg();
-	} else if(x) {
 
-	}
 
+var d = client.on('navdata', function(data){
+	tmp = json.parse(data);
+	track.velocity = tmp.demo.velocity;
+	track.batteryDying = tmp.droneState.lowBattery;
 });
