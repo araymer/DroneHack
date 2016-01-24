@@ -3,6 +3,7 @@ exports = {
 	newDest: function(){
 		curPos( x = (Math.Random() * 2 * max) - max, y = (Math.Random() * 2 * max) - max);
 	}
+
 	sensorReactions: function(l, r){
 		if(l === 1 && r === 0){
 			avoidRight();
@@ -15,8 +16,9 @@ exports = {
 		}
 		updatePos();
 	}
+	
 	updatePos: function(){
-		var SAD = 0; 
+		var SAD = 0;
 		var height = 0;
 		d = client.on('navdata'), function(data){
 				tmp = json.parse(data);
