@@ -26,6 +26,13 @@ exports.land = function (client) {
 //Begins patrol (moving forward)
 exports.patrol = function (client) {
 	client.front(1);
+	return client;
+}
+
+//Stops all movement and hovers
+exports.stop = function (client) {
+	client.stop();
+	return client;
 }
 
 /*
