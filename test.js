@@ -41,8 +41,10 @@ Test of Motion commands interrupting patrol
 
 /* Test avoidance functions */
 //avoid left
-motion.takeoff(client)
-  .after (3000, function() {
+motion.takeoff(client);
+  client.after (3000, function() {
+    motion.patrol(client);
+  }).after (3000, function() {
     motion.avoidLeft(client);
   }).after(15000, function() {
     this.stop();
@@ -51,11 +53,13 @@ motion.takeoff(client)
   });
 
 //avoid right
-motion.takeoff(client)
-  .after (3000, function() {
-    motion.avoidRight(client);
-  }).after(15000, function() {
-    this.stop();
-  }).after(2000, function() {
-    motion.land(client);
-  });
+// motion.takeoff(client);
+//   client.after (3000, function() {
+//    motion.patrol(client);
+//    }).after (3000, function() {
+//     motion.avoidRight(client);
+//   }).after(15000, function() {
+//     this.stop();
+//   }).after(2000, function() {
+//     motion.land(client);
+//   });

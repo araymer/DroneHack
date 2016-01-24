@@ -1,3 +1,4 @@
+var arDrone = require('ardrone-autonomy');
 
 var exports = module.exports = {};
 
