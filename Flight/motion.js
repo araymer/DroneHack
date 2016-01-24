@@ -48,6 +48,26 @@ exports.left = function (client) {
 	return client;
 };
 
+//Ascends the drone
+exports.up = function (client, duration) {
+	client.stop();
+	client.after(1000, function() {
+		client.up(.2);
+	}).after(duration, function() {
+		client.stop();
+	})
+};
+
+//Descends the drone
+exports.down = function (client, duration) {
+	client.stop();
+	client.after(1000, function() {
+		client.down(.2);
+	}).after(duration, function() {
+		client.stop();
+	})
+};
+
 //Stops all movement and hovers
 exports.stop = function (client) {
 	client.stop();
