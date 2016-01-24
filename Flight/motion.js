@@ -26,70 +26,13 @@ exports = {
 		client.land(landCallback);
 	},
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 752343de5edf890dcde7194f01859df6f364d163
 	//Begins patrol (moving forward)
 	patrol: function (client) {
 		client.front(1);
 		return client;
 	},
-<<<<<<< HEAD
 
-//Begins patrol (moving forward)
-exports.patrol = function (client) {
-	client.front(1);
-	return client;
-}
-
-//Turns the drone right 90 degrees. We do not strafe.
-exports.right = function (client) {
-	client.stop();
-	client.after(1000, function() {
-		mission.cw(90).run();
-	});
-	return "RIGHT";
-};
-
-//Turns the drone left 90 degrees. We do not strafe.
-exports.left = function (client) {
-	client.stop();
-	client.after(1000, function() {
-		mission.ccw(90).run();
-	});
-	return "LEFT";
-};
-
-//Ascends the drone
-exports.up = function (client, duration) {
-	client.stop();
-	client.after(1000, function() {
-		client.up(.2);
-	}).after(duration, function() {
-		client.stop();
-	})
-};
-
-//Descends the drone
-exports.down = function (client, duration) {
-	client.stop();
-	client.after(1000, function() {
-		client.down(.2);
-	}).after(duration, function() {
-		client.stop();
-	})
-};
-
-//Stops all movement and hovers
-exports.stop = function (client) {
-	client.stop();
-	return client;
-}
-
-=======
-
->>>>>>> 752343de5edf890dcde7194f01859df6f364d163
 	//Turns the drone right 90 degrees. We do not strafe.
 	right: function (client) {
 		client.stop();
