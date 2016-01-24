@@ -1,44 +1,47 @@
 var exports = module.exports = {};
 
+const tcardinal = [ "NORTH", "EAST", "SOUTH", "WEST" ] ;
 var const NORTH = 1;
 var const EAST = 2;
 var const SOUTH = 3;
 var const WEST = 4;
 
-var manuever = "LANDED";
-var dir = NORTH;
-var curPos = {x: 0, y: 0};
-var destPos = {x: 0, y: 0};
-var prevPos = {x: 0, y: 0};
-var FPS = 4;
-var currMillisec = 0;
-var height = 0;
-var batteryDying = false;
-var reachedX = false;
-var reachedY = false;
-
+var tdir = tcardinal[0];
+var tcurPos = {x: 0, y: 0};
+var tdestPos = {x: 0, y: 0};
+var tprevPos = {x: 0, y: 0};
+var tFPS = 4;
+var tcurrMillisec = 0;
+var theight = 0;
+var tbatteryDying = false; 
+var treachedX = false;
+var treachedY = false;
+var tavoiding = "NONE";
+var tvelocity = 0.0;
 
 exports = {
 
-	manuever: manuever,
-	dir: dir,
-	curPos: curPos,
-	destPos: destPos,
-	prevPos: prevPos,
-	height: height,
-	batteryDying: batteryDying,
-	reachedX: reachedX,
-	reachedY: reachedY,
-
+	dir: tdir,
+	curPos: tcurPos,
+	destPos: tdestPos,
+	prevPos: tprevPos,
+	height: theight,
+	batteryDying: tbatteryDying,
+	reachedX: treachedX,
+	reachedY: treachedY,
+	avoiding: tavoiding,
+	velocity: tvelocity,
 
 	newDest: function(){
 		curPos = {x: Math.floor((Math.Random() * 2 * max) - max), y: Math.floor((Math.Random() * 2 * max) - max)};
 		currMillisec = 0;
 	},
+
 	updatePos: function(){
 		deltaDistance = velocity * milliSec;
 		updateDir(deltaDistance);
 	},
+
 	updateDir: function(deltaDistance){
 		if(dir === NORTH){
 			curPos.y += deltaDistance;
@@ -53,34 +56,32 @@ exports = {
 			curPos.x -= deltaDistance;
 		}
 	},
+
 	startTime: function(){
 		miliSec += 50;
 		setTimeOut(startTime, 50);
 	},
+
 	goHome: function(){
 		destPos(x = 0, y = 0);
 		prevPos = curPos;
 		setHomeDir();
-	}
+	},
+
 	setHomeDir: function(){
 		if(0 < curPos.x && 0 < curPos.y){
-			dir = SOUTH;
+			dir = cardinal[2];
 		}
 		if(0 < curPos.x && 0 > curPos.y){
-			dir = WEST;
+			dir = cardinal[3];
 		}
 		if(0 > curPos.x && 0 > curPos.y){
-			dir = NORTH;
+			dir = cardinal[0];
 		}
 		if(0 > curPos.x && 0 < curPos.y){
-			dir = EAST;
-		}
+			dir = cardinal[1];
+		}		
 	}
 }
 
-d = client.on('navdata', function(data){
-				tmp = json.parse(data);
-				velocity = tmp.demo.velocity;
-				batteryDying = tmp.droneState.lowBattery;
-			}
-		});
+

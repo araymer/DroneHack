@@ -1,10 +1,10 @@
-
-var const cruisingHeight = 2500;
+const cruisingHeight = 2500;
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
-var security = require('.Security/alert');
-var client = require('client');
-var copterface = require('./webflight-copterface/public/js/copterface');
+var security = require('./Security/alert');
+var client = require('./client');
+// var copterface = require('./Recog/copterface');
+
 
 var droneClient = arDrone.createClient();
 
@@ -17,6 +17,7 @@ function newLeg() {
 	track.newDest(); 
 	var xDist = Math.abs(track.destPos.x - track.curPos.x);
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
+<<<<<<< HEAD
 	if(abs(track.destPos.x - track.curPos.x) < abs(track.destPos.y - track.curPos.y)) {
 		if(xDist < track.curPos.x){
 			while(track.dir !== track.EAST)
@@ -38,11 +39,22 @@ function newLeg() {
 			while(track.dir !== track.NORTH)
 				motion.right(client);
 			motion.patrol(client);
+=======
+	if(xDist <= yDist) {
+		if(track.destPos.x <= track.curPos.x) {
+			
+>>>>>>> 752343de5edf890dcde7194f01859df6f364d163
 		}
 	}
-
 }
 
+
+
+var d = client.on('navdata', function(data){
+	tmp = json.parse(data);
+	track.velocity = tmp.demo.velocity;
+	track.batteryDying = tmp.droneState.lowBattery;
+});
 /**
  * Observes if the drone has reached the X target and makes
  * appropriate adjustments if necessary.
@@ -101,17 +113,13 @@ Object.observe(track.reachedY, function(changes) {
 			}
 		}
 	}
-});
+
 
 Object.observe(copterface.tracking, function(changes) {
-<<<<<<< Updated upstream
-	if(copterface.track)
 
-=======
 	if(copterface.track && !alerted) {
 		security.alert();
 		security.alerted = true;
 	} else if(!copterface.track)
 		security.alerted = false;
->>>>>>> Stashed changes
 }

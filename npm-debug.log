@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'webflight-copterface' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'webflight-copterface', null ]
+5 verbose cache add name=undefined spec="webflight-copterface" args=["webflight-copterface",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'webflight-copterface',
+6 verbose parsed url   path: 'webflight-copterface',
+6 verbose parsed url   href: 'webflight-copterface' }
+7 silly lockFile e072302d-webflight-copterface webflight-copterface
+8 verbose lock webflight-copterface /Users/main/.npm/e072302d-webflight-copterface.lock
+9 silly lockFile e072302d-webflight-copterface webflight-copterface
+10 silly lockFile e072302d-webflight-copterface webflight-copterface
+11 verbose addNamed [ 'webflight-copterface', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile d06096f9-webflight-copterface webflight-copterface@
+14 verbose lock webflight-copterface@ /Users/main/.npm/d06096f9-webflight-copterface.lock
+15 silly addNameRange { name: 'webflight-copterface', range: '*', hasData: false }
+16 verbose request where is /webflight-copterface
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id ca1c10bb6808064a
+19 verbose url raw /webflight-copterface
+20 verbose url resolving [ 'https://registry.npmjs.org/', './webflight-copterface' ]
+21 verbose url resolved https://registry.npmjs.org/webflight-copterface
+22 verbose request where is https://registry.npmjs.org/webflight-copterface
+23 info trying registry request attempt 1 at 06:00:16
+24 http GET https://registry.npmjs.org/webflight-copterface
+25 http 404 https://registry.npmjs.org/webflight-copterface
+26 silly registry.get cb [ 404,
+26 silly registry.get   { 'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '2',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Sun, 24 Jan 2016 13:00:17 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-sjc3129-SJC',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1453640417.078696,VS0,VE40' } ]
+27 silly lockFile d06096f9-webflight-copterface webflight-copterface@
+28 silly lockFile d06096f9-webflight-copterface webflight-copterface@
+29 error 404 Not Found
+29 error 404
+29 error 404 'webflight-copterface' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Darwin 15.2.0
+31 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "webflight-copterface"
+32 error cwd /Applications/MAMP/htdocs/DroneHack
+33 error node -v v0.10.33
+34 error npm -v 1.4.28
+35 error code E404
+36 verbose exit [ 1, true ]
