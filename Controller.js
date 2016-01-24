@@ -14,7 +14,7 @@ function startUp() {
 }
 
 function newLeg() {
-	track.newDest();
+	track.newDest(); 
 	var xDist = Math.abs(track.destPos.x - track.curPos.x);
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
 	if(xDist <= yDist) {
@@ -86,6 +86,14 @@ Object.observe(track.reachedY, function(changes) {
 });
 
 Object.observe(copterface.tracking, function(changes) {
+<<<<<<< Updated upstream
 	if(copterface.track)
 
+=======
+	if(copterface.track && !alerted) {
+		security.alert();
+		security.alerted = true;
+	} else if(!copterface.track)
+		security.alerted = false;
+>>>>>>> Stashed changes
 }
