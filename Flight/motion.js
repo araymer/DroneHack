@@ -29,6 +29,24 @@ exports.patrol = function (client) {
 	return client;
 }
 
+//Turns the drone right 90 degrees. We do not strafe.
+exports.right = function (client) {
+	client.stop();
+	client.after(1000, function() {
+		mission.cw(90).run();
+	});
+	return client;
+};
+
+//Turns the drone left 90 degrees. We do not strafe.
+exports.left = function (client) {
+	client.stop();
+	client.after(1000, function() {
+		mission.ccw(90).run();
+	});
+	return client;
+};
+
 //Stops all movement and hovers
 exports.stop = function (client) {
 	client.stop();
