@@ -43,7 +43,12 @@ exports.avoidLeft = function (client) {
 	}).after(2000, function() {
 		this.stop();
 	}).after(2000, function() {
+<<<<<<< HEAD
 		this.clockwise(.2);
+=======
+		//this.clockwise(.2);
+		mission.ccw(90).run();
+>>>>>>> c74820c11ff119f03756046b6168aaeda05991c9
 	}).after(3000, function() {
 		this.front(1);
 		return client;
@@ -65,7 +70,12 @@ exports.avoidRight = function (client) {
 	}).after(2000, function() {
 		this.stop();
 	}).after(2000, function() {
+<<<<<<< HEAD
 		this.counterClockwise(.2);
+=======
+		//this.clockwise(.2);
+		mission.cw(90).run();
+>>>>>>> c74820c11ff119f03756046b6168aaeda05991c9
 	}).after(3000, function() {
 		this.front(1);
 		return client;

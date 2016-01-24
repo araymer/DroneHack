@@ -3,18 +3,6 @@ exports = {
 	newDest: function(){
 		curPos( x = (Math.Random() * 2 * max) - max, y = (Math.Random() * 2 * max) - max);
 	}
-	sensorReactions: function(l, r){
-		if(l === 1 && r === 0){
-			avoidRight();
-		}
-		if(l === 0 && r === 1){
-			avoidLeft();
-		}
-		else{
-			rotateRight();
-		}
-		updatePos();
-	}
 	updatePos: function(){
 		var SAD = 0; 
 		var height = 0;

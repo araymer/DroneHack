@@ -9,6 +9,11 @@ var client = require('client');
 var droneClient = arDrone.createClient();
 
 
-
+function sensorReaction(sensors) {
+	if(sensors.L == true) {
+		motion.avoidLeft();
+		track.
+	}
+}
 
 
