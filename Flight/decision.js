@@ -7,6 +7,19 @@ STANDBY, HOVER, FORWARD, BACK, LEFTTURN, RIGHTTURN, LEFT, RIGHT, UP, DOWN,
 LANDING, TAKEOFF
 */
 
+function backup(client) {
+	client.stop();
+	client.after(2000, function() {
+		this.back(.2);
+	}).after(2000, function() {
+		this.stop();
+	}).after(2000, function() {
+		this.clockwise(.2);
+	}).after(3000, function() {
+		this.front(.2);
+	});
+}
+
 exports.data = function(client) {
 	client.on('navdata', console.log);
 };
@@ -19,6 +32,7 @@ exports.takeoff = function (client) {
 	state = "TAKEOFF";
 	var takeoffCallback = function() {state = "HOVER"};
 	client.takeoff(takeoffCallback);
+	client.after(5000, null);
 };
 
 exports.land = function (client) {
@@ -30,73 +44,73 @@ exports.land = function (client) {
 exports.ascend = function (client, speed, time) {
 	state = "UP";
 	client.up(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.descend = function (client, speed, time) {
 	state = "DOWN";
 	client.down(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.turnLeft = function (client, speed, time) {
 	state = "LEFTTURN";
 	client.counterClockwise(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.turnRight = function (client, speed, time) {
 	state = "RIGHTTURN";
 	client.clockwise(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.moveForward = function (client, speed, time) {
 	state = "FORWARD";
 	client.front(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.moveBackward = function (client, speed, time) {
 	state = "BACK";
 	client.back(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.moveLeft = function (client, speed, time) {
 	state = "LEFT";
 	client.left(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.moveRight = function (client, speed, time) {
 	state = "RIGHT";
 	client.right(speed);
-	setTimeout(function () {
+	client.after(time, function () {
 		client.stop();
 		state = "HOVER";
-	}, time);
+	});
 };
 
 exports.stop = function (client) {
