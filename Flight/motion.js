@@ -14,73 +14,72 @@ MOTION FUNCTIONS
  *	upon callback to allow it to fit into the builder
  *	pattern.
  */
-exports = {
-
-	takeoff: function (client) {
+exports.takeoff = function (client) {
 		var takeoffCallback = function() {return client;};
 		client.takeoff(takeoffCallback);
-	},
+	};
 
-	land: function (client) {
+	exports.land = function (client) {
 		var landCallback = function() {return client;};
 		client.land(landCallback);
-	},
+	};
 
 
 	//Begins patrol (moving forward)
-	patrol: function (client) {
+	exports.patrol = function (client) {
 		client.front(1);
 		return client;
-	},
+	};
 
 	//Turns the drone right 90 degrees. We do not strafe.
-	right: function (client) {
+	exports.right = function (client) {
 		client.stop();
 		client.after(1000, function() {
-			mission.cw(90).run();
-		});
+			client.clockwise(0.2);
+		}).after(1500, function(){client.stop()});
 		return client;
-	},
+	};
 
 	//Turns the drone left 90 degrees. We do not strafe.
-	left: function (client) {
+	exports.left = function (client) {
 		client.stop();
 		client.after(1000, function() {
-			mission.ccw(90).run();
+			client.counterClockwiseclockwise(0.2);
+		}).after(1500, function(){client.stop()});
 		});
 		return client;
-	},
+	};
 
-	 up: function (client, duration) {
+	 exports.up = function (client, duration) {
 	 	client.stop();
 	 	client.after(1000, function() {
 	 		client.up(.2);
 	 	}).after(duration, function() {
 	 		client.stop();
 	 	})
-	},
+	};
 	 
 	 //Descends the drone
-	 down: function (client, duration) {
+	 exports.down = function (client, duration) {
 	 	client.stop();
 	 	client.after(1000, function() {
 	 		client.down(.2);
 	 	}).after(duration, function() {
 	 		client.stop();
 	 	})
-	 },
+	 };
  
 	//Stops all movement and hovers
-	stop: function (client) {
+	exports.stop = function (client) {
 		client.stop();
 		return client;
-	},
+	};
 
 	/*
 	 * Should be performed when the right IR sensor
 	 * OR BOTH SENSORS detect an incoming obstacle.
 	 */
-	avoidLeft: function (client) {
+	exports.avoidLeft = function (client) {
 		client.stop();
 		client.after(2000, function() {
 			//this.counterClockwise(.2);
@@ -98,13 +97,13 @@ exports = {
 			this.front(1);
 			return client;
 		});
-	},
+	};
 
 	/*
 	 * Should be performed when the left IR sensor
 	 * detects an incoming obstacle.
 	 */
-	avoidRight: function (client) {
+	exports.avoidRight = function (client) {
 		client.stop();
 		client.after(2000, function() {
 			//this.clockwise(.2);
@@ -122,13 +121,13 @@ exports = {
 			this.front(1);
 			return client;
 		});
-	},
+	};
 
 	/*
 	 * Turns around a full 180 degrees. Useful if the drone finds
 	 * itself stuck and unable to continue forward.
 	 */
-	turnAround: function (client) {
+	exports.turnAround = function (client) {
 		client.stop();
 		client.after(2000, function() {
 			mission.cw(180).run();
@@ -138,5 +137,5 @@ exports = {
 			this.front(1);
 			return client;
 		});
-	}
-}
+	};
+

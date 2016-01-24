@@ -1,17 +1,17 @@
 const cruisingHeight = 2500;
-var arDrong = require('ar-drone');
+var arDrone = require('ar-drone');
+var droneClient = arDrone.createClient();
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
 var security = require('./Security/alert');
 var client = require('./client');
+var O = require('node-observer');
 // var copterface = require('./Recog/copterface');
-
-
-var droneClient = arDrone.createClient();
 
 function startUp() {
 	client.startUp();
-	motion.takeoff();
+	motion.takeoff(droneClient);
+	motion.up(droneClient);
 	newLeg();
 }
 
@@ -19,36 +19,38 @@ function newLeg() {
 	track.newDest(); 
 	var xDist = Math.abs(track.destPos.x - track.curPos.x);
 	var yDist = Math.abs(track.destPos.y - track.curPos.y);
-	if(abs(track.destPos.x - track.curPos.x) < abs(track.destPos.y - track.curPos.y)) {
+	if(Math.abs(track.destPos.x - track.curPos.x) < Math.abs(track.destPos.y - track.curPos.y)) {
 		if(xDist < track.curPos.x){
-			while(track.dir !== track.EAST)
-				motion.left(client);
-			motion.patrol(client);
+			while(track.dir !== "EAST")
+				motion.left(droneClient);
+			motion.patrol(droneClient);
 		}
 		if(track.curPos.x < xDist){
-			while(track.dir !== track.WEST)
-				motion.right(client);
-			motion.patrol(client);
+			while(track.dir !== "WEST")
+				motion.right(droneClient);
+			motion.patrol(droneClient);
 		}
 	} else{
 		if(yDist < track.curPos.y){
-			while(track.dir !== track.SOUTH)
-				motion.left(client);
-			motion.patrol(client);
+			while(track.dir !== "SOUTH")
+				motion.left(droneClient);
+			motion.patrol(droneClient);
 		}
 		if(track.curPos.y < yDist){
-			while(track.dir !== track.NORTH)
-				motion.right(client);
-			motion.patrol(client);
+			while(track.dir !== "NORTH")
+				motion.right(droneClient);
+			motion.patrol(droneClient);
 
 		}
 	}
 }
 
 
-
-var d = client.on('navdata', function(data){
-	tmp = json.parse(data);
+droneClient.on('navdata', function(data){
+	data = data + " ";
+    if( !( /{.*}/.test(data) ) )
+    	return;
+	tmp = JSON.parse(data);
 	track.velocity = tmp.demo.velocity;
 	track.batteryDying = tmp.droneState.lowBattery;
 });
@@ -56,7 +58,7 @@ var d = client.on('navdata', function(data){
  * Observes if the drone has reached the X target and makes
  * appropriate adjustments if necessary.
  */
-Object.observe(track.reachedX, function(changes) {
+O.subscribe(track.reachedX, "X REACHED", function(changes) {
 	if(track.reachedX) {
 		if (track.reachedY) {
 			newLeg();
@@ -86,7 +88,7 @@ Object.observe(track.reachedX, function(changes) {
  * Observes if the drone has reached the Y target and makes
  * appropriate adjustments if necessary.
  */
-Object.observe(track.reachedY, function(changes) {
+O.subscribe(track.reachedY, "Y REACHRED", function(changes) {
 	if(track.reachedY) {
 		if (track.reachedX) {
 			newLeg();
@@ -112,13 +114,15 @@ Object.observe(track.reachedY, function(changes) {
 	}
 });
 
+startUp();
 
-Object.observe(copterface.tracking, function(changes) {
 
-	if(copterface.track && !alerted) {
-		security.alert();
-		security.alerted = true;
-	} else if(!copterface.track) {
-		security.alerted = false;
-	}
-});
+// O.subscribe(copterface.tracking, "COPTER", function(changes) {
+
+// 	if(copterface.track && !alerted) {
+// 		security.alert();
+// 		security.alerted = true;
+// 	} else if(!copterface.track) {
+// 		security.alerted = false;
+// 	}
+// });

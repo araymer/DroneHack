@@ -22,7 +22,7 @@ var exports = module.exports = {
 
 exports.obstacleSensors = irFlags;
 
-exports.startUp();
+// exports.startUp();
 
 
 

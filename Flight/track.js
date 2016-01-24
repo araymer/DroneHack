@@ -15,30 +15,30 @@ var treachedY = false;
 var tavoiding = "NONE";
 var tvelocity = 0.0;
 
-exports = {
+exports.dir = tdir,
+	exports.curPos = tcurPos,
+	exports.destPos = tdestPos,
+	exports.prevPos = tprevPos,
+	exports.heightt = theight,
+	exports.batteryDying = tbatteryDying,
+	exports.reachedX = treachedX,
+	exports.reachedY = treachedY,
+	exports.avoiding = tavoiding,
+	exports.velocity = tvelocity,
 
-	dir: tdir,
-	curPos: tcurPos,
-	destPos: tdestPos,
-	prevPos: tprevPos,
-	height: theight,
-	batteryDying: tbatteryDying,
-	reachedX: treachedX,
-	reachedY: treachedY,
-	avoiding: tavoiding,
-	velocity: tvelocity,
-
-	newDest: function(){
-		curPos = {x: Math.floor((Math.Random() * 2 * max) - max), y: Math.floor((Math.Random() * 2 * max) - max)};
+	exports.newDest = function(){
+		min = -20;
+		max = 20;
+		curPos = {x: Math.floor((Math.random() * 2 * max) - max), y: Math.floor((Math.random() * 2 * max) - max)};
 		currMillisec = 0;
 	},
 
-	updatePos: function(){
+	exports.updatePos = function(){
 		deltaDistance = velocity * milliSec;
 		updateDir(deltaDistance);
 	},
 
-	updateDir: function(deltaDistance){
+	exports.updateDir = function(deltaDistance){
 		if(dir === NORTH){
 			curPos.y += deltaDistance;
 		}
@@ -53,18 +53,18 @@ exports = {
 		}
 	},
 
-	startTime: function(){
+	exports.startTime = function(){
 		miliSec += 50;
 		setTimeOut(startTime, 50);
 	},
 
-	goHome: function(){
+	exports.goHome = function(){
 		destPos(x = 0, y = 0);
 		prevPos = curPos;
 		setHomeDir();
 	},
 
-	setHomeDir: function(){
+	exports.setHomeDir = function(){
 		if(0 < curPos.x && 0 < curPos.y){
 			dir = cardinal[2];
 		}
@@ -77,7 +77,7 @@ exports = {
 		if(0 > curPos.x && 0 < curPos.y){
 			dir = cardinal[1];
 		}		
-	}
-}
+	};
+
 
 
