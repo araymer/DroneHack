@@ -30,7 +30,7 @@ exports = {
 
 	newDest: function(){
 		curPos = {x: (Math.Random() * 2 * max) - max, y: (Math.Random() * 2 * max) - max};
-	}
+	},
 	updatePos: function(){
 		d = client.on('navdata'), function(data){
 				tmp = json.parse(data);
@@ -40,7 +40,7 @@ exports = {
 		}
 		deltaDistance = velocity * milliSec;
 		updatePos(deltaDistance);
-	}
+	},
 	updateDir: function(deltaDistance){
 		if(dir === NORTH){
 			curPos.y += deltaDistance;
@@ -54,7 +54,7 @@ exports = {
 		if(dir === WEST){
 			curPos.x -= deltaDistance;
 		}
-	}
+	},
 	startTime: function(){
 		miliSec += 50;
 		setTimeOut(startTime, 50);
