@@ -1,14 +1,41 @@
 var exports = module.exports = {};
+
+var const NORTH = 1;
+var const WEST = 2;
+var const EAST = 3;
+var const SOUTH = 4;
+
+var manuever = "LANDED";
+var dir = NORTH;
+var curPos = {x: 0, y: 0};
+var destPos = {x: 0, y: 0};
+var prevPos = {x: 0, y: 0};
+var FPS = 4;
+var miliSec = 0;
+var height = 0;
+var batteryDying = false; 
+
+
+
 exports = {
+
+	manuever: manuever,
+	dir: dir,
+	curPos: curPos,
+	destPos: destPos,
+	prevPos: prevPos,
+	height: height,
+	batteryDying: batteryDying,
+
+
 	newDest: function(){
-		curPos( x = (Math.Random() * 2 * max) - max, y = (Math.Random() * 2 * max) - max);
+		curPos = {x: (Math.Random() * 2 * max) - max, y: (Math.Random() * 2 * max) - max};
 	}
 	updatePos: function(){
-		var SAD = 0; 
-		var height = 0;
 		d = client.on('navdata'), function(data){
 				tmp = json.parse(data);
 				velocity = tmp.demo.velocity;
+				batteryDying = tmp.droneState.lowBattery;
 			}
 		}
 		deltaDistance = velocity * milliSec;
@@ -16,26 +43,21 @@ exports = {
 	}
 	updateDir: function(deltaDistance){
 		if(dir === NORTH){
-			curPos(x, y += deltaDistance);
+			curPos.y += deltaDistance;
 		}
 		if(dir === SOUTH){
-			curPos(x, y -= deltaDistance);
+			curPos.y -= deltaDistance;
 		}
 		if(dir === EAST){
-			curPos(x += deltaDistance, y);
+			curPos.x += deltaDistance;
 		}
 		if(dir === WEST){
-			curPos(x -= deltaDistance, y);
+			curPos.x -= deltaDistance;
 		}
 	}
-	setTime: function(){
-		miliSec = setTimeOut(startTime, 50);
+	startTime: function(){
+		miliSec += 50;
+		setTimeOut(startTime, 50);
 	}
 }
-/* GLOBALS */
-var dir = NORTH
-var curPos(x, y);
-var destPos(x, y);
-var prevPos(x, y);
-var FPS = 4;
-var miliSec = 0;
+
