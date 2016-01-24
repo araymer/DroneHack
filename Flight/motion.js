@@ -75,3 +75,19 @@ exports.avoidRight = function (client) {
 		return client;
 	});
 };
+
+/*
+ * Turns around a full 180 degrees. Useful if the drone finds
+ * itself stuck and unable to continue forward.
+ */
+exports.turnAround = function (client) {
+	client.stop();
+	client.after(2000, function() {
+		mission.cw(180).run();
+	}).after(3000, function() {
+		this.stop();
+	}).after(2000, function() {
+		this.front(1);
+		return client;
+	});
+};
