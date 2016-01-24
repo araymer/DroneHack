@@ -1,5 +1,5 @@
 
-var const cruisingHeight = 
+var const cruisingHeight = 2500;
 var motion = require('./Flight/motion');
 var track = require('./Flight/track');
 var security = require('.Security/alert');
