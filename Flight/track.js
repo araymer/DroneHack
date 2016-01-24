@@ -1,9 +1,9 @@
 var exports = module.exports = {};
 
 var const NORTH = 1;
-var const WEST = 2;
-var const EAST = 3;
-var const SOUTH = 4;
+var const EAST = 2;
+var const SOUTH = 3;
+var const WEST = 4;
 
 var manuever = "LANDED";
 var dir = NORTH;
@@ -13,7 +13,7 @@ var prevPos = {x: 0, y: 0};
 var FPS = 4;
 var currMillisec = 0;
 var height = 0;
-var batteryDying = false; 
+var batteryDying = false;
 var reachedX = false;
 var reachedY = false;
 
@@ -74,7 +74,7 @@ exports = {
 		}
 		if(0 > curPos.x && 0 < curPos.y){
 			dir = EAST;
-		}		
+		}
 	}
 }
 
@@ -84,4 +84,3 @@ d = client.on('navdata', function(data){
 				batteryDying = tmp.droneState.lowBattery;
 			}
 		});
-

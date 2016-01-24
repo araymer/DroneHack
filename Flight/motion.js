@@ -15,7 +15,7 @@ MOTION FUNCTIONS
  *	pattern.
  */
 exports = {
-	
+
 	takeoff: function (client) {
 		var takeoffCallback = function() {return client;};
 		client.takeoff(takeoffCallback);
@@ -26,13 +26,12 @@ exports = {
 		client.land(landCallback);
 	},
 
-<<<<<<< HEAD
 	//Begins patrol (moving forward)
 	patrol: function (client) {
 		client.front(1);
 		return client;
 	},
-=======
+
 //Begins patrol (moving forward)
 exports.patrol = function (client) {
 	client.front(1);
@@ -45,7 +44,7 @@ exports.right = function (client) {
 	client.after(1000, function() {
 		mission.cw(90).run();
 	});
-	return client;
+	return "RIGHT";
 };
 
 //Turns the drone left 90 degrees. We do not strafe.
@@ -54,7 +53,7 @@ exports.left = function (client) {
 	client.after(1000, function() {
 		mission.ccw(90).run();
 	});
-	return client;
+	return "LEFT";
 };
 
 //Ascends the drone
@@ -82,7 +81,6 @@ exports.stop = function (client) {
 	client.stop();
 	return client;
 }
->>>>>>> ffca069a022aa3f4c743eac1afd89741e656232c
 
 	//Turns the drone right 90 degrees. We do not strafe.
 	right: function (client) {
