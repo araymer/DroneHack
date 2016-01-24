@@ -26,6 +26,13 @@ exports.land = function (client) {
 //Begins patrol (moving forward)
 exports.patrol = function (client) {
 	client.front(1);
+	return client;
+}
+
+//Stops all movement and hovers
+exports.stop = function (client) {
+	client.stop();
+	return client;
 }
 
 /*
@@ -71,6 +78,22 @@ exports.avoidRight = function (client) {
 		//this.counterClockwise(.2);
 		mission.ccw(90).run();
 	}).after(3000, function() {
+		this.front(1);
+		return client;
+	});
+};
+
+/*
+ * Turns around a full 180 degrees. Useful if the drone finds
+ * itself stuck and unable to continue forward.
+ */
+exports.turnAround = function (client) {
+	client.stop();
+	client.after(2000, function() {
+		mission.cw(180).run();
+	}).after(3000, function() {
+		this.stop();
+	}).after(2000, function() {
 		this.front(1);
 		return client;
 	});
