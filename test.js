@@ -59,5 +59,3 @@ motion.takeoff(client)
   }).after(2000, function() {
     motion.land(client);
   });
-=======
-  });
